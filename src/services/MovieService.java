@@ -1,23 +1,56 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.Movie;
 
 public class MovieService {
-    public void addMovie(Movie movie) {
- 
-    }
-
-    public void removeMovie(String title) {
     
+    private List<Movie> movies;
+
+    public MovieService() {
+        this.movies = new ArrayList<>();
     }
 
-    public Movie getMovie(String title) {
-		return null;
+    public void addMovie(Movie movie) {
+        movies.add(movie);
+    }
 
+    public void removeMovie(Movie movie) {
+        movies.remove(movie);
     }
 
     public List<Movie> getAllMovies() {
-		return null;
+        return movies;
+    }
+
+    public List<Movie> getMoviesByGenre(String genre) {
+        List<Movie> genreMovies = new ArrayList<>();
+        for (Movie movie : movies) {
+            if (movie.getGenre().equalsIgnoreCase(genre)) {
+                genreMovies.add(movie);
+            }
+        }
+        return genreMovies;
+    }
+
+    public List<Movie> getMoviesByDirector(String director) {
+        List<Movie> directorMovies = new ArrayList<>();
+        for (Movie movie : movies) {
+            if (movie.getDirector().equalsIgnoreCase(director)) {
+                directorMovies.add(movie);
+            }
+        }
+        return directorMovies;
+    }
+
+    public List<Movie> getMoviesByCastMember(String castMember) {
+        List<Movie> castMovies = new ArrayList<>();
+        for (Movie movie : movies) {
+            if (movie.getCast().contains(castMember)) {
+                castMovies.add(movie);
+            }
+        }
+        return castMovies;
     }
 }
